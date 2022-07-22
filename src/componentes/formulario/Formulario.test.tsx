@@ -1,11 +1,15 @@
-import { fireEvent, render, screen } from "@testing-library/react";
+import { act, fireEvent, render, screen } from "@testing-library/react";
 import exp from "constants";
 import React from "react";
+import { RecoilRoot } from "recoil";
 import Formulario from "./Formulario";
 
 test('Quando input estiver vazio, novos participantes não podem ser adicionados', () => {
 
-    render(<Formulario />)
+    render(
+        <RecoilRoot>
+            <Formulario />
+        </RecoilRoot>)
     // encontrar no DOM o input
     const input = screen.getByPlaceholderText('insira os nomes dos participantes')
 
@@ -20,7 +24,10 @@ test('Quando input estiver vazio, novos participantes não podem ser adicionados
 
 test('Adicionar um participante caso exista um nome preenchido', () => {
 
-    render(<Formulario />)
+    render(
+        <RecoilRoot>
+            <Formulario />
+        </RecoilRoot>)
 
     const input = screen.getByPlaceholderText('insira os nomes dos participantes')
 
@@ -39,4 +46,82 @@ test('Adicionar um participante caso exista um nome preenchido', () => {
     expect(input).toHaveFocus()
     //garantir que o input nao tenha valor
     expect(input).toHaveValue('')
+})
+
+test('Nomes duplicados não podem ser adicionados na lista', () => {
+    render(
+        <RecoilRoot>
+            <Formulario />
+        </RecoilRoot>)
+
+    const input = screen.getByPlaceholderText('insira os nomes dos participantes')
+
+    const botao = screen.getByRole('button')
+
+    fireEvent.change(input, {
+        target: {
+            value: 'Victor Reis'
+        }
+    })
+    //clicar no botao de gravar 
+    fireEvent.click(botao)
+
+    fireEvent.change(input, {
+        target: {
+            value: 'Victor Reis'
+        }
+    })
+    //clicar no botao de gravar 
+    fireEvent.click(botao)
+
+    const msgError = screen.getByRole('alert')
+
+    expect(msgError.textContent).toBe('Nomes duplicados não são permitidos!')
+
+
+})
+
+test('Mensagem de erro deve sumir após n segundos', () => {
+    jest.useFakeTimers()
+    render(
+        <RecoilRoot>
+            <Formulario />
+        </RecoilRoot>)
+
+    const input = screen.getByPlaceholderText('insira os nomes dos participantes')
+
+    const botao = screen.getByRole('button')
+
+    fireEvent.change(input, {
+        target: {
+            value: 'Victor Reis'
+        }
+    })
+    //clicar no botao de gravar 
+    fireEvent.click(botao)
+
+    fireEvent.change(input, {
+        target: {
+            value: 'Victor Reis'
+        }
+    })
+    //clicar no botao de gravar 
+    fireEvent.click(botao)
+
+    let msgError = screen.queryByRole('alert')
+
+    expect(msgError).toBeInTheDocument()
+
+    //esperar n segundos
+
+    act(() => {
+
+        jest.runAllTimers()
+    });
+
+    msgError = screen.queryByRole('alert')
+    expect(msgError).toBeNull()
+
+
+
 })
