@@ -1,6 +1,7 @@
 import { useRef, useState } from "react";
 import { useAddParticipante } from "../../state/hooks/useAddParticipante";
 import { useMsgErro } from "../../state/hooks/useMsgErro";
+import './formulario.css'
 
 const Formulario = () => {
     const [nome, setNome] = useState('');
