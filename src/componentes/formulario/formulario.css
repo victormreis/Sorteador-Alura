@@ -18,7 +18,7 @@
     outline: none;
 }
 
-.grupo-input-btn button {
+ button {
     border-top-right-radius: 45px;
     border-bottom-right-radius: 45px;
     height: 82px;
@@ -32,11 +32,11 @@
     background-color: #c4c4c4;
 }
 
-.grupo-input-btn button:hover {
+button:hover {
     opacity: 0.8;
 }
 
-.grupo-input-btn button:disabled {
+ button:disabled {
     opacity: 0.6;
     cursor: not-allowed;
 }
@@ -60,7 +60,7 @@
         box-shadow: 0px 2px 0px 1px #000000;    
         margin-bottom: 18px;
     }
-    .grupo-input-btn button {
+     button {
         display: block;
         margin-top: 16px;
         margin: 0 auto;
