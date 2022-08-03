@@ -13,7 +13,7 @@ describe('comportamento do forumalrio.tsx', () => {
                 <Formulario />
             </RecoilRoot>)
         // encontrar no DOM o input
-        const input = screen.getByPlaceholderText('insira os nomes dos participantes')
+        const input = screen.getByPlaceholderText('Insira os nomes dos participantes')
 
         //Encontrar o botão
         const botao = screen.getByRole('button')
@@ -31,7 +31,7 @@ describe('comportamento do forumalrio.tsx', () => {
                 <Formulario />
             </RecoilRoot>)
 
-        const input = screen.getByPlaceholderText('insira os nomes dos participantes')
+        const input = screen.getByPlaceholderText('Insira os nomes dos participantes')
 
         const botao = screen.getByRole('button')
 
@@ -56,7 +56,7 @@ describe('comportamento do forumalrio.tsx', () => {
                 <Formulario />
             </RecoilRoot>)
 
-        const input = screen.getByPlaceholderText('insira os nomes dos participantes')
+        const input = screen.getByPlaceholderText('Insira os nomes dos participantes')
 
         const botao = screen.getByRole('button')
 
@@ -90,7 +90,7 @@ describe('comportamento do forumalrio.tsx', () => {
                 <Formulario />
             </RecoilRoot>)
 
-        const input = screen.getByPlaceholderText('insira os nomes dos participantes')
+        const input = screen.getByPlaceholderText('Insira os nomes dos participantes')
 
         const botao = screen.getByRole('button')
 
